@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mukilan — Full-Stack Engineer, Creative Video Editor & Designer." />
+  <title>MUKILAN // PORTFOLIO</title>
+
+  <!-- Google Fonts: Bebas Neue, Space Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-background text-foreground">
+
+  <!-- ===== NOISE & GRID OVERLAYS ===== -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- ===== LEFT SIDEBAR NAVIGATION RAIL ===== -->
+  <nav class="side-nav" aria-label="Main Navigation">
+    <div class="side-nav-inner">
+      <a href="#hero" class="nav-dot-item active" data-section="hero" aria-label="Home">
+        <span class="dot"></span>
+        <span class="dot-label">01 / Home</span>
+      </a>
+      <a href="#about" class="nav-dot-item" data-section="about" aria-label="About">
+        <span class="dot"></span>
+        <span class="dot-label">02 / About</span>
+      </a>
+      <a href="#projects" class="nav-dot-item" data-section="projects" aria-label="Projects">
+        <span class="dot"></span>
+        <span class="dot-label">03 / Selected Work</span>
+      </a>
+      <a href="#skills" class="nav-dot-item" data-section="skills" aria-label="Capabilities">
+        <span class="dot"></span>
+        <span class="dot-label">04 / Capabilities</span>
+      </a>
+      <a href="#principles" class="nav-dot-item" data-section="principles" aria-label="Principles">
+        <span class="dot"></span>
+        <span class="dot-label">05 / Principles</span>
+      </a>
+      <a href="#contact" class="nav-dot-item" data-section="contact" aria-label="Contact">
+        <span class="dot"></span>
+        <span class="dot-label">06 / Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE TOP NAVBAR ===== -->
+  <header class="mobile-header">
+    <div class="mobile-logo">MUKILAN<span class="accent-text">.DEV</span></div>
+    <div class="mobile-right">
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-label">LIGHT</span>
+      </button>
+      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE OVERLAY MENU -->
+  <div id="mobileMenu" class="mobile-menu-overlay">
+    <ul class="mobile-nav-list">
+      <li><a href="#hero" class="mobile-link">01 / Home</a></li>
+      <li><a href="#about" class="mobile-link">02 / About</a></li>
+      <li><a href="#projects" class="mobile-link">03 / Selected Work</a></li>
+      <li><a href="#skills" class="mobile-link">04 / Capabilities</a></li>
+      <li><a href="#principles" class="mobile-link">05 / Principles</a></li>
+      <li><a href="#contact" class="mobile-link">06 / Contact</a></li>
+    </ul>
+  </div>
+
+  <main class="main-content">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-signal-tag">
+        <span class="mono-tag">SIGNAL // 2026</span>
+      </div>
+
+      <div class="hero-body">
+        <!-- Giant Interactive Decrypt Title -->
+        <div class="giant-title-wrapper">
+          <h1 class="giant-title" id="giantTitle">
+            <span class="title-block" data-char="M">M</span>
+            <span class="title-block" data-char="U">U</span>
+            <span class="title-block" data-char="K">K</span>
+            <span class="title-block highlight-block" data-char="I">I</span>
+            <span class="title-block" data-char="L">L</span>
+            <span class="title-block" data-char="A">A</span>
+            <span class="title-block" data-char="N">N</span>
+          </h1>
+        </div>
+
+        <h2 class="sub-headline">
+          FULL-STACK ENGINEER, CREATIVE EDITOR & DESIGNER
+        </h2>
+
+        <p class="hero-description">
+          Architecting high-performance web systems, scalable cloud platforms, refined UI design, and high-impact video
+          post-production. Focused on precision and aesthetics.
+        </p>
+
+        <!-- Social URLs Links Bar -->
+        <div class="social-links-bar">
+          <span class="social-bar-label">CONNECT //</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            LINKEDIN ↗
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            GITHUB ↗
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            TWITTER / X ↗
+          </a>
+          <a href="mailto:mukilanperiyasamy07@gmail.com" class="social-btn">
+            EMAIL ↗
+          </a>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-atom">
+            <span>GET STARTED</span>
+            <svg width="18" height="18" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.85715 3.85715H19.2857L23.0553 7.64066L17.5163 13.1595L22.8462 17.5055V23.1429H17.5055V13.1703L7.65696 22.9832L3.8874 19.2L13.9259 9.19781H3.85715V3.85715Z"
+                fill="currentColor"></path>
+            </svg>
+          </a>
+          <a href="#contact" class="btn-atom-ghost">CONTACT ME</a>
+        </div>
+      </div>
+
+      <!-- AI Chat Widget -->
+      <div class="ai-widget-container">
+        <button id="aiWidgetToggle" class="hero-corner-badge ai-badge" aria-label="Open Assistant">
+          <span>ASK A QUESTION ✦</span>
+        </button>
+        <div id="aiChatPanel" class="ai-chat-panel hidden">
+          <div class="ai-chat-header">
+            <span class="mono-tag" style="color: var(--accent);">PORTFOLIO ASSISTANT</span>
+            <button id="aiChatClose" class="ai-close-btn">&times;</button>
+          </div>
+          <div id="aiChatBody" class="ai-chat-body">
+            <div class="ai-message bot-msg">
+              <span class="msg-sender">SYSTEM //</span> Hello! I can help you navigate the portfolio. What would you
+              like to see?
+            </div>
+            <div class="ai-suggestions" id="aiSuggestions">
+              <button class="ai-suggestion-btn" data-ask="projects">What are your projects?</button>
+              <button class="ai-suggestion-btn" data-ask="skills">What are your core skills?</button>
+              <button class="ai-suggestion-btn" data-ask="contact">How can I contact you?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="section-container">
+      <div class="section-header">
+        <span class="section-mono-tag">01 / OVERVIEW</span>
+        <h2 class="bebas-heading">DEVELOPMENT & VIDEO EDITING</h2>
+      </div>
+
+      <div class="about-flex">
+        <div class="about-left">
+          <p class="about-lead">
+            I build modern web applications and craft compelling video media content that captivates audiences and
+            delivers messages with maximum visual impact.
+          </p>
+          <p class="about-body">
+            Combining robust software development skills (React, Node, Python) with professional video editing and
+            motion design capabilities (Premiere Pro, After Effects, DaVinci Resolve), I deliver end-to-end digital
+            solutions.
+          </p>
+
+          <div class="about-stats-grid">
+            <div class="stat-box">
+              <span class="stat-value">2+</span>
+              <span class="stat-label">YEARS EXP</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value">15+</span>
+              <span class="stat-label">PROJECTS DELIVERED</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value">50+</span>
+              <span class="stat-label">VIDEOS EDITED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right">
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
+              <span class="code-title">mukilan.config.ts</span>
+            </div>
+            <pre class="code-body"><code><span class="code-kw">export const</span> <span class="code-var">developer</span> = {
+  name: <span class="code-str">'Mukilan'</span>,
+  roles: [<span class="code-str">'Full-Stack Engineer'</span>, <span class="code-str">'Video Editor'</span>, <span class="code-str">'Motion Designer'</span>],
+  editingTools: [<span class="code-str">'Premiere Pro'</span>, <span class="code-str">'After Effects'</span>, <span class="code-str">'DaVinci Resolve'</span>],
+  techStack: [<span class="code-str">'React'</span>, <span class="code-str">'Next.js'</span>, <span class="code-str">'Node'</span>, <span class="code-str">'Python'</span>],
+  status: <span class="code-str">'Available for Work'</span>
+};</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SELECTED WORK / PROJECTS ===== -->
+    <section id="projects" class="section-container">
+      <div class="section-header flex-between reveal-left-pop">
+        <div>
+          <span class="section-mono-tag">02 / PORTFOLIO</span>
+          <h2 class="bebas-heading">VIDEO EDITING & MEDIA PROJECTS</h2>
+        </div>
+        <p class="section-subtitle-right">
+          Commercial video edits, motion graphics reels, color grading, and creative web platforms.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Project 1 (Featured Video Showreel) -->
+        <article class="bento-card col-span-2 row-span-2 reveal-left-pop">
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <div class="bento-top">
+              <span class="mono-badge">FEATURED REEL</span>
+              <span class="mono-date">2026.01</span>
+            </div>
+            <h3 class="bento-title">Commercial Video Showreel 2026</h3>
+            <p class="bento-desc">
+              High-energy promotional video edits, precision color grading, cinematic sound design, and custom motion
+              graphics for brand campaigns and product launches.
+            </p>
+            <div class="bento-tags">
+              <span>Adobe Premiere Pro</span><span>After Effects</span><span>DaVinci Resolve</span><span>Color
+                Grading</span><span>Sound FX</span>
+            </div>
+          </div>
+          <span class="bento-num">01</span>
+          <div class="bento-corner-line"></div>
+        </article>
+
+        <!-- Project 2 (Kinetic Motion & Intros) -->
+        <article class="bento-card col-span-1 row-span-1 reveal-left-pop">
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <div class="bento-top">
+              <span class="mono-badge">MOTION DESIGN</span>
+              <span class="mono-date">2025.12</span>
+            </div>
+            <h3 class="bento-title">Kinetic Typography & Intros</h3>
+            <p class="bento-desc">
+              Custom motion graphic openers, animated lower-thirds, title graphics, and kinetic typography.
+            </p>
+            <div class="bento-tags">
+              <span>After Effects</span><span>Motion Design</span><span>Kinetic Type</span>
+            </div>
+          </div>
+          <span class="bento-num">02</span>
+          <div class="bento-corner-line"></div>
+        </article>
+
+        <!-- Project 3 (YouTube / Social Content Editing) -->
+        <article class="bento-card col-span-1 row-span-2 reveal-left-pop">
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <div class="bento-top">
+              <span class="mono-badge">CONTENT EDITING</span>
+              <span class="mono-date">2025.10</span>
+            </div>
+            <h3 class="bento-title">High-Retention Content Editing</h3>
+            <p class="bento-desc">
+              Video editing for YouTube creators and social media featuring fast pacing, B-roll integration, engaging
+              captions, and custom sound design.
+            </p>
+            <div class="bento-tags">
+              <span>Premiere Pro</span><span>B-Roll Sync</span><span>High Retention</span><span>CapCut / AE</span>
+            </div>
+          </div>
+          <span class="bento-num">03</span>
+          <div class="bento-corner-line"></div>
+        </article>
+
+        <!-- Project 4 (Cinematic Color & VFX) -->
+        <article class="bento-card col-span-1 row-span-1 reveal-left-pop">
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <div class="bento-top">
+              <span class="mono-badge">POST-PRODUCTION</span>
+              <span class="mono-date">2025.07</span>
+            </div>
+            <h3 class="bento-title">Cinematic Color & Audio Studio</h3>
+            <p class="bento-desc">
+              Cinematic color matching, noise reduction, multicam edit sync, and Fairlight audio mastering.
+            </p>
+            <div class="bento-tags">
+              <span>DaVinci Resolve</span><span>Color Match</span><span>Audio Mastering</span>
+            </div>
+          </div>
+          <span class="bento-num">04</span>
+          <div class="bento-corner-line"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CAPABILITIES / SKILLS ===== -->
+    <section id="skills" class="section-container">
+      <div class="section-header reveal-left-pop">
+        <span class="section-mono-tag">03 / CAPABILITIES</span>
+        <h2 class="bebas-heading">TECH & EDITING SKILLS</h2>
+      </div>
+
+      <div class="capabilities-list">
+        <div class="cap-row reveal-left-pop">
+          <span class="cap-num">01 / FRONTEND</span>
+          <h3 class="cap-title">USER INTERFACE ARCHITECTURE</h3>
+          <p class="cap-desc">Building resilient, accessible client applications using React, Next.js, TypeScript, and
+            modern CSS frameworks.</p>
+          <div class="cap-tags">
+            <span>React</span><span>Next.js</span><span>TypeScript</span><span>Tailwind
+              CSS</span><span>HTML5/CSS3</span>
+          </div>
+        </div>
+
+        <div class="cap-row reveal-left-pop">
+          <span class="cap-num">02 / BACKEND</span>
+          <h3 class="cap-title">DISTRIBUTED SYSTEMS & APIS</h3>
+          <p class="cap-desc">Designing RESTful and GraphQL APIs, microservices, authentication pipelines, and
+            serverless logic.</p>
+          <div class="cap-tags">
+            <span>Node.js</span><span>Express</span><span>Python</span><span>REST APIs</span><span>GraphQL</span>
+          </div>
+        </div>
+
+        <!-- NEW: Video Editing & Post Production -->
+        <div class="cap-row reveal-left-pop">
+          <span class="cap-num">03 / CREATIVE & VIDEO EDITING</span>
+          <h3 class="cap-title">VIDEO EDITING & MOTION GRAPHICS</h3>
+          <p class="cap-desc">Professional video editing, color grading, sound design, visual effects, and kinetic
+            typography for digital media & promo content.</p>
+          <div class="cap-tags">
+            <span>Adobe Premiere Pro</span><span>After Effects</span><span>DaVinci Resolve</span><span>Motion
+              Graphics</span><span>Color Grading</span><span>Sound Design</span><span>Photoshop</span>
+          </div>
+        </div>
+
+        <div class="cap-row reveal-left-pop">
+          <span class="cap-num">04 / DATABASE</span>
+          <h3 class="cap-title">DATA MANAGEMENT & STORAGE</h3>
+          <p class="cap-desc">Managing relational and NoSQL databases, caching layers, and real-time synchronization
+            databases.</p>
+          <div class="cap-tags">
+            <span>MongoDB</span><span>PostgreSQL</span><span>MySQL</span><span>Redis</span><span>Firebase</span>
+          </div>
+        </div>
+
+        <div class="cap-row reveal-left-pop">
+          <span class="cap-num">05 / DEVOPS</span>
+          <h3 class="cap-title">CLOUD & DEPLOYMENT</h3>
+          <p class="cap-desc">Automating continuous integration, containerization, and infrastructure deployment across
+            AWS and Vercel.</p>
+          <div class="cap-tags">
+            <span>Docker</span><span>Git</span><span>GitHub Actions</span><span>AWS</span><span>Vercel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRINCIPLES SECTION ===== -->
+    <section id="principles" class="section-container">
+      <div class="section-header reveal-left-pop">
+        <span class="section-mono-tag">04 / CORE VALUES</span>
+        <h2 class="bebas-heading">ENGINEERING & CREATIVE PRINCIPLES</h2>
+      </div>
+
+      <div class="principles-stack">
+        <article class="principle-item text-left reveal-left-pop">
+          <span class="principle-num">01 / SOFTWARE DEVELOPMENT</span>
+          <h3 class="principle-title">
+            <span class="highlight-inline">ROBUST & SCALABLE</span> CODE
+          </h3>
+          <p class="principle-desc">Architecting clean, modular software systems and web platforms engineered for speed,
+            maintainability, and exceptional user experience.</p>
+          <div class="principle-divider"></div>
+        </article>
+
+        <article class="principle-item text-right reveal-left-pop">
+          <span class="principle-num">02 / AI & DATA SCIENCE</span>
+          <h3 class="principle-title">
+            INTELLIGENT <span class="highlight-inline">AIDS MODELING</span>
+          </h3>
+          <p class="principle-desc">Leveraging machine learning algorithms, model fine-tuning, and data science
+            techniques to solve complex computational problems.</p>
+          <div class="principle-divider right-divider"></div>
+        </article>
+
+        <article class="principle-item text-left reveal-left-pop">
+          <span class="principle-num">03 / DATA AUTOMATION</span>
+          <h3 class="principle-title">
+            <span class="highlight-inline">ANALYTICS &</span> AUTOMATION
+          </h3>
+          <p class="principle-desc">Transforming raw datasets into actionable insights through predictive models,
+            automated workflows, and data pipelines.</p>
+          <div class="principle-divider"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="section-container">
+      <div class="section-header">
+        <span class="section-mono-tag">05 / GET IN TOUCH</span>
+        <h2 class="bebas-heading">START A PROJECT</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3 class="contact-lead">HAVE AN IDEA OR OPPORTUNITY?</h3>
+          <p class="contact-sub">
+            Open for full-stack engineering roles, video editing projects, and creative collaborations worldwide.
+          </p>
+
+          <div class="contact-details">
+            <div class="detail-row">
+              <span class="detail-label">EMAIL</span>
+              <a href="mailto:mukilanperiyasamy07@gmail.com" class="detail-value">mukilanperiyasamy07@gmail.com</a>
+            </div>
+
+            <!-- Social Links in Contact -->
+            <div class="detail-row">
+              <span class="detail-label">SOCIAL PROFILES</span>
+              <div class="contact-social-links">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                  class="contact-social-item">LinkedIn ↗</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                  class="contact-social-item">GitHub ↗</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                  class="contact-social-item">Twitter/X ↗</a>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">AVAILABILITY</span>
+              <span class="detail-value status-open">• Open for Work</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">LOCATION</span>
+              <span class="detail-value">Remote / Worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm" class="atom-form" novalidate>
+          <div class="form-field">
+            <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" />
+            <label for="name">YOUR NAME</label>
+          </div>
+
+          <div class="form-field">
+            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+            <label for="email">EMAIL ADDRESS</label>
+          </div>
+
+          <div class="form-field">
+            <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+            <label for="message">PROJECT DETAILS</label>
+          </div>
+
+          <button type="submit" class="btn-atom btn-full-width" id="submitBtn">
+            <span>SUBMIT INQUIRY</span>
+            <svg width="18" height="18" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.85715 3.85715H19.2857L23.0553 7.64066L17.5163 13.1595L22.8462 17.5055V23.1429H17.5055V13.1703L7.65696 22.9832L3.8874 19.2L13.9259 9.19781H3.85715V3.85715Z"
+                fill="currentColor"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="atom-footer">
+    <div class="footer-inner">
+      <span class="footer-brand">MUKILAN<span class="accent-text">.DEV</span></span>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">GITHUB</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">TWITTER</a>
+      </div>
+      <a href="#hero" class="footer-back-top">TOP ↑</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
