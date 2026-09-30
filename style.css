@@ -110,8 +110,9 @@ a {
   z-index: 50;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 1.5rem 0;
   border-right: 1px solid var(--border-color);
   background: rgba(9, 13, 18, 0.85);
   backdrop-filter: blur(12px);
@@ -122,10 +123,84 @@ html.light .side-nav {
   background: rgba(244, 246, 248, 0.85);
 }
 
+.side-nav-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-logo-link {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.side-logo-link:hover {
+  transform: scale(1.1);
+  color: var(--accent);
+}
+
 .side-nav-inner {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
+}
+
+.side-nav-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.side-theme-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.side-theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.2);
+}
+
+.side-theme-btn:active {
+  transform: scale(0.95);
+}
+
+/* Theme Icons Visibility */
+.theme-icon {
+  pointer-events: none;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+html.dark .sun-icon {
+  display: block;
+}
+
+html.dark .moon-icon {
+  display: none;
+}
+
+html.light .sun-icon {
+  display: none;
+}
+
+html.light .moon-icon {
+  display: block;
 }
 
 .nav-dot-item {
@@ -194,13 +269,17 @@ html.light .side-nav {
 .mobile-right { display: flex; align-items: center; gap: 1rem; }
 
 .theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.15em;
-  padding: 0.35rem 0.75rem;
-  background: transparent;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
+  border-radius: 6px;
   cursor: pointer;
   transition: var(--transition-fast);
 }
@@ -1159,3 +1238,89 @@ html.light .side-nav {
   .about-stats-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
 }
+
+/* ======================================================
+   ATOM Q DYNAMIC THEME WAVE ANIMATION
+   Diagonal S-Curve Reveal Effect (Chromium View Transition & Fallback)
+   ====================================================== */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+[data-theme-transition="to-light"]::view-transition-new(root),
+[data-theme-transition="to-dark"]::view-transition-new(root) {
+  animation: atomqWaveWipe 0.85s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+@keyframes atomqWaveWipe {
+  0% {
+    clip-path: polygon(
+      120% 0%, 122% 12%, 125% 25%, 128% 38%, 130% 50%, 131% 62%, 132% 75%, 133% 88%, 134% 100%,
+      150% 100%, 150% 0%
+    );
+  }
+  50% {
+    /* Exact curved diagonal S-split from Atom Q screenshot */
+    clip-path: polygon(
+      72% 0%, 74% 12%, 78% 25%, 82% 38%, 84% 50%, 84% 62%, 84% 75%, 85% 88%, 85% 100%,
+      150% 100%, 150% 0%
+    );
+  }
+  100% {
+    clip-path: polygon(
+      -35% 0%, -33% 12%, -29% 25%, -25% 38%, -23% 50%, -23% 62%, -23% 75%, -22% 88%, -22% 100%,
+      150% 100%, 150% 0%
+    );
+  }
+}
+
+/* Fallback Wave Curtain */
+.atomq-wave-curtain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(110%);
+  transition: none;
+}
+
+.atomq-wave-curtain.sweep-in {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0%);
+  transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.15s ease;
+}
+
+.atomq-wave-curtain.sweep-out {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-110%);
+  transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.25s ease;
+}
+
+.curtain-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.curtain-wave {
+  fill: var(--bg-color);
+  transition: fill 0.2s ease;
+}
+

@@ -64,40 +64,108 @@
     setTimeout(initialDecryptAnimation, 300);
   }
 
-  // ---- Dark / Light Theme Toggle ----
-  const themeToggle = document.getElementById('themeToggle');
-  const htmlEl      = document.documentElement;
-  const themeLabel  = themeToggle ? themeToggle.querySelector('.theme-label') : null;
+  // ---- Dark / Light Theme Toggle (Atom Q Dynamic Wave Transition) ----
+  const themeToggle        = document.getElementById('themeToggle');
+  const desktopThemeToggle = document.getElementById('desktopThemeToggle');
+  const htmlEl             = document.documentElement;
+  const themeLabel         = themeToggle ? themeToggle.querySelector('.theme-label') : null;
+  const waveCurtain        = document.getElementById('atomqWaveCurtain');
+
+  function updateThemeUI(theme) {
+    const isLight = theme === 'light';
+    if (themeLabel) {
+      themeLabel.textContent = isLight ? 'DARK' : 'LIGHT';
+    }
+    if (desktopThemeToggle) {
+      desktopThemeToggle.setAttribute('aria-label', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+      desktopThemeToggle.setAttribute('title', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+    }
+  }
 
   // Initialize saved theme or system preference
   const savedTheme = localStorage.getItem('atomq_theme');
-  if (savedTheme) {
-    if (savedTheme === 'light') {
-      htmlEl.classList.remove('dark');
-      htmlEl.classList.add('light');
-      if (themeLabel) themeLabel.textContent = 'DARK';
+  if (savedTheme === 'light') {
+    htmlEl.classList.remove('dark');
+    htmlEl.classList.add('light');
+    updateThemeUI('light');
+  } else {
+    htmlEl.classList.remove('light');
+    htmlEl.classList.add('dark');
+    updateThemeUI('dark');
+  }
+
+  let isThemeTransitioning = false;
+
+  function toggleThemeWithWave() {
+    if (isThemeTransitioning) return;
+    const isCurrentlyLight = htmlEl.classList.contains('light');
+    const targetTheme = isCurrentlyLight ? 'dark' : 'light';
+
+    // Check if View Transition API is supported (Chromium & Modern Browsers)
+    if (typeof document.startViewTransition === 'function') {
+      isThemeTransitioning = true;
+      htmlEl.setAttribute('data-theme-transition', targetTheme === 'light' ? 'to-light' : 'to-dark');
+
+      const transition = document.startViewTransition(() => {
+        if (targetTheme === 'light') {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+        } else {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+        }
+        localStorage.setItem('atomq_theme', targetTheme);
+        updateThemeUI(targetTheme);
+      });
+
+      transition.finished.finally(() => {
+        htmlEl.removeAttribute('data-theme-transition');
+        isThemeTransitioning = false;
+      });
+    } else if (waveCurtain) {
+      // Fallback animated wave curtain
+      isThemeTransitioning = true;
+      waveCurtain.classList.remove('sweep-out');
+      waveCurtain.classList.add('sweep-in');
+
+      setTimeout(() => {
+        if (targetTheme === 'light') {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+        } else {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+        }
+        localStorage.setItem('atomq_theme', targetTheme);
+        updateThemeUI(targetTheme);
+
+        waveCurtain.classList.remove('sweep-in');
+        waveCurtain.classList.add('sweep-out');
+
+        setTimeout(() => {
+          waveCurtain.classList.remove('sweep-out');
+          isThemeTransitioning = false;
+        }, 450);
+      }, 350);
     } else {
-      htmlEl.classList.remove('light');
-      htmlEl.classList.add('dark');
-      if (themeLabel) themeLabel.textContent = 'LIGHT';
+      // Instant switch fallback
+      if (targetTheme === 'light') {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+      } else {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+      }
+      localStorage.setItem('atomq_theme', targetTheme);
+      updateThemeUI(targetTheme);
     }
   }
 
   if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isLight = htmlEl.classList.contains('light');
-      if (isLight) {
-        htmlEl.classList.remove('light');
-        htmlEl.classList.add('dark');
-        localStorage.setItem('atomq_theme', 'dark');
-        if (themeLabel) themeLabel.textContent = 'LIGHT';
-      } else {
-        htmlEl.classList.remove('dark');
-        htmlEl.classList.add('light');
-        localStorage.setItem('atomq_theme', 'light');
-        if (themeLabel) themeLabel.textContent = 'DARK';
-      }
-    });
+    themeToggle.addEventListener('click', toggleThemeWithWave);
+  }
+  if (desktopThemeToggle) {
+    desktopThemeToggle.addEventListener('click', toggleThemeWithWave);
   }
 
   // ---- Mobile Navigation Menu ----
