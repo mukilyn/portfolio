@@ -6,62 +6,110 @@
 (function () {
   'use strict';
 
-  // ---- Matrix Decrypt & Hover Scramble Effect for Giant Title ----
+  // ---- Mechanical Split-Flap Ticker Title Animation (Atom Q Style) ----
+  const giantTitle  = document.getElementById('giantTitle');
   const titleBlocks = document.querySelectorAll('.title-block');
-  const CHARACTERS  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$@%&*';
+  const FLAP_CHARS  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-  function getRandomChar() {
-    return CHARACTERS.charAt(Math.floor(Math.random() * CHARACTERS.length));
+  function getRandomFlapChar() {
+    return FLAP_CHARS.charAt(Math.floor(Math.random() * FLAP_CHARS.length));
   }
 
-  // Initial Decrypt Animation on Page Load
-  function initialDecryptAnimation() {
+  let isAnimationRunning = false;
+
+  function runSplitFlapOpeningAnimation() {
+    if (!titleBlocks.length) return;
+    isAnimationRunning = true;
+
+    // 1. Initial State: Put all blocks into scrambling state immediately (Amber/Brown + Orange)
+    titleBlocks.forEach(block => {
+      block.classList.remove('is-locked', 'just-locked');
+      block.classList.add('is-scrambling');
+      block.textContent = getRandomFlapChar();
+    });
+
+    // 2. Animate each block individually with staggered mechanical locking left-to-right
     titleBlocks.forEach((block, index) => {
-      const targetChar  = block.getAttribute('data-char') || block.textContent.trim();
-      let shuffleCount  = 0;
-      const maxShuffles = 10 + index * 5; // Staggered unlock
+      const finalChar = block.getAttribute('data-char') || block.textContent.trim() || ' ';
 
-      const interval = setInterval(() => {
-        block.textContent = getRandomChar();
-        shuffleCount++;
+      // Each letter scrambles for: base 400ms + (index * 240ms)
+      // Produces the progressive unlock: left side locks to white/black while right side continues in amber/orange
+      const lockDelayMs = 400 + index * 240;
+      const startTime = performance.now();
 
-        if (shuffleCount >= maxShuffles) {
-          clearInterval(interval);
-          block.textContent = targetChar;
+      const scrambleInterval = setInterval(() => {
+        const elapsed = performance.now() - startTime;
+
+        if (elapsed >= lockDelayMs) {
+          clearInterval(scrambleInterval);
+          // Lock into place!
+          block.textContent = finalChar;
+          block.classList.remove('is-scrambling');
+          block.classList.add('is-locked', 'just-locked');
+
+          setTimeout(() => {
+            block.classList.remove('just-locked');
+          }, 350);
+
+          if (index === titleBlocks.length - 1) {
+            isAnimationRunning = false;
+          }
+        } else {
+          // Rapid flap tick
+          block.textContent = getRandomFlapChar();
+          block.classList.add('flipping');
+          setTimeout(() => block.classList.remove('flipping'), 35);
         }
       }, 50);
     });
   }
 
-  // Hover Scramble for Individual Letter Blocks
+  // Hover effect: re-scramble and lock individual tile
   titleBlocks.forEach(block => {
     let hoverInterval = null;
 
     block.addEventListener('mouseenter', () => {
-      const targetChar = block.getAttribute('data-char') || block.textContent.trim();
-      let count = 0;
+      if (isAnimationRunning) return;
+      const finalChar = block.getAttribute('data-char') || block.textContent.trim();
+      let ticks = 0;
+      const maxTicks = 8;
 
       if (hoverInterval) clearInterval(hoverInterval);
+      block.classList.remove('is-locked');
+      block.classList.add('is-scrambling');
 
       hoverInterval = setInterval(() => {
-        block.textContent = getRandomChar();
-        count++;
+        block.textContent = getRandomFlapChar();
+        block.classList.add('flipping');
+        setTimeout(() => block.classList.remove('flipping'), 35);
+        ticks++;
 
-        if (count >= 8) {
+        if (ticks >= maxTicks) {
           clearInterval(hoverInterval);
-          block.textContent = targetChar;
+          block.textContent = finalChar;
+          block.classList.remove('is-scrambling');
+          block.classList.add('is-locked', 'just-locked');
+          setTimeout(() => block.classList.remove('just-locked'), 300);
         }
       }, 45);
     });
   });
 
-  // Trigger initial decrypt on load
+  // Clicking the whole title board re-runs the full animation sweep
+  if (giantTitle) {
+    giantTitle.addEventListener('click', () => {
+      if (!isAnimationRunning) {
+        runSplitFlapOpeningAnimation();
+      }
+    });
+  }
+
+  // Trigger animation on load
   window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initialDecryptAnimation, 300);
+    setTimeout(runSplitFlapOpeningAnimation, 250);
   });
-  // Fallback trigger if already loaded
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initialDecryptAnimation, 300);
+    setTimeout(runSplitFlapOpeningAnimation, 250);
   }
 
   // ---- Dark / Light Theme Toggle (Atom Q Dynamic Wave Transition) ----
